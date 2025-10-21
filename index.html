@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UBAID & SAHLA — 10 Months of togetherness</title>
+  <style>
+    /* --- Simple, romantic styles --- */
+
+
+    body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #2b2b2b;
+  background: 
+    linear-gradient(rgba(255, 248, 246, 0.8), rgba(255, 255, 255, 0.8)),
+    url('bmimg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+    :root{--bg:#fff8f6;--accent:#d84b6b;--muted:#7a6b6b;--card:#fff;--glass:rgba(255,255,255,0.6)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#2b2b2b;background:linear-gradient(180deg,#fff8f6 0%, #fff 100%);}
+    header{padding:28px 18px;text-align:center}
+    .names{font-size:28px;font-weight:700;color:var(--accent)}
+    .subtitle{color:var(--muted);margin-top:6px}
+    main{max-width:980px;margin:18px auto;padding:18px}
+    .grid{display:grid;gap:16px}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,20,0.06)}
+    button{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
+    .muted{color:var(--muted)}
+
+    /* Gallery */
+    .thumb{width:100%;height:160px;object-fit:cover;border-radius:8px;cursor:pointer}
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+
+    /* Modal / Lightbox */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:60;opacity:0;pointer-events:none;transition:opacity .18s}
+    .modal.show{opacity:1;pointer-events:auto}
+    .modal .dialog{background:#fff;border-radius:12px;max-width:920px;width:96%;max-height:92vh;overflow:auto;padding:12px}
+
+    /* Open Box */
+    .box-wrap{display:flex;align-items:center;justify-content:center;padding:18px}
+    .box{width:260px;height:180px;position:relative;perspective:900px;cursor:pointer}
+    .box .lid{position:absolute;left:0;right:0;height:64px;background:linear-gradient(180deg,#ffefef,#ffdfe6);border-radius:8px 8px 0 0;transform-origin:top center;transition:transform .7s cubic-bezier(.2,.9,.3,1);box-shadow:0 8px 18px rgba(0,0,0,.12)}
+    .box .base{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(180deg,#fff,#ffecec);border-radius:0 0 8px 8px;box-shadow:inset 0 2px 6px rgba(0,0,0,.04)}
+    .box.open .lid{transform:rotateX(-75deg) translateY(-18px)}
+    .surprise-content{position:absolute;inset:12px;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center}
+
+    /* Controls */
+    .controls{display:flex;gap:8px;align-items:center}
+    input[type=range]{width:140px}
+
+    footer{text-align:center;color:var(--muted);padding:18px}
+
+    @media (max-width:640px){.thumb{height:110px}.box{width:210px;height:150px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="names">UBAID &amp; SAHLA</div>
+    <div class="subtitle">10 Months of togetherness — 22 Oct 2025</div>
+  </header>
+
+  <main>
+    <!-- Top controls + music -->
+    <section class="card grid" style="grid-template-columns:1fr auto;align-items:center">
+      <div>
+        <h2 style="margin:0 0 6px 0">Happy 10th Month of Our Wedding ❤️</h2>
+        <div class="muted">A small surprise — messages, photos, videos and an open box surprise. Click around and enjoy my love. </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <audio id="bgm" src="bgm.mp3" preload="auto"></audio>
+        <div class="controls">
+          <button id="playBtn" style="background:#E2AEB3">Play Music</button>
+          <button id="pauseBtn" style="background:#ccc;color:#222">Pause</button>
+          <label class="muted" style="font-size:13px">Vol</label>
+          <input id="vol" type="range" min="0" max="1" step="0.01" value="0.6">
+        </div>
+      </div>
+    </section>
+
+    <!-- Love messages -->
+    <section style="margin-top:16px">
+      <div class="card">
+        <h3>Love Messages</h3>
+        <div id="messages" style="display:grid;gap:8px;margin-top:8px">
+          <!-- sample messages - edit in code -->
+          <div class="card" style="background:var(--glass);padding:12px">My dearest Shaalu — every moment with you is my favorite memory.</div>
+          <div class="card" style="background:var(--glass);padding:12px">Ten months of laughter, late-night talks, and small, perfect mornings. Happy 10th month of our wedding💕</div>
+          <div class="card" style="background:var(--glass);padding:12px">10 months down, forever to go with you ❤️.</div>
+        </div>
+      </div>
+    </section>
+
+    <h2>Our Moments</h2>
+
+    <!-- Image Gallery -->
+    <section style="margin-top:16px">
+      <div class="card">
+        <h3>Image Gallery</h3>
+        <div class="gallery-grid" id="imageGallery" style="margin-top:10px">
+          <img class="thumb" src="2.jpg" alt="" data-full=>
+          <img class="thumb" src="3.jpg" alt="" data-full=>
+          <img class="thumb" src="4.jpg" alt="" data-full=>
+          <img class="thumb" src="5.jpg" alt="" data-full=>
+          <img class="thumb" src="6.jpg" alt="" data-full=>
+          <img class="thumb" src="7.jpg" alt="" data-full=>
+          <img class="thumb" src="8.jpg" alt="" data-full=>
+          <img class="thumb" src="9.jpg" alt="" data-full=>
+          <img class="thumb" src="10.jpg" alt="" data-full=>
+          <img class="thumb" src="11.jpg" alt="" data-full=>
+          <img class="thumb" src="12.jpg" alt="" data-full=>
+          <img class="thumb" src="13.jpg" alt="" data-full=>
+          <img class="thumb" src="14.jpg" alt="" data-full=>
+          <img class="thumb" src="15.jpg" alt="" data-full=>
+          <img class="thumb" src="16.jpg" alt="" data-full=>
+          <img class="thumb" src="17.jpg" alt="" data-full=>
+          <img class="thumb" src="18.jpg" alt="" data-full=>
+          <img class="thumb" src="19.jpg" alt="" data-full=>
+          <img class="thumb" src="20.jpg" alt="" data-full=>
+          <img class="thumb" src="21.jpg" alt="" data-full=>
+          <img class="thumb" src="22.jpg" alt="" data-full=>
+          <img class="thumb" src="23.jpg" alt="" data-full=>
+          <img class="thumb" src="24.jpg" alt="" data-full=>
+          <img class="thumb" src="25.jpg" alt="" data-full=>
+          <img class="thumb" src="26.jpg" alt="" data-full=>
+          <img class="thumb" src="27.jpg" alt="" data-full=>
+          <img class="thumb" src="28.jpg" alt="" data-full=>
+          <img class="thumb" src="29.jpg" alt="" data-full=>
+          <img class="thumb" src="30.jpg" alt="" data-full=>
+          <img class="thumb" src="38.jpg" alt="" data-full=>
+          <img class="thumb" src="39.jpg" alt="" data-full=>
+          <img class="thumb" src="33.jpg" alt="" data-full=>
+          <img class="thumb" src="34.jpg" alt="" data-full=>
+          <img class="thumb" src="35.jpg" alt="" data-full=>
+          <img class="thumb" src="36.jpg" alt="" data-full=>
+          <img class="thumb" src="37.jpg" alt="" data-full=>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section style="margin-top:16px">
+      <div class="card">
+        <h3>Video Gallery</h3>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+          <!-- sample: uses YouTube embeds (replace with your own URLs or host) -->
+          <div style="flex:1;min-width:260px">
+    <div style="border-radius:8px;overflow:hidden">
+        <iframe width="100%" height="180" src="1.mp4" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="muted" style="margin-top:6px"></div>
+</div>
+          <div style="flex:1;min-width:260px">
+    <div style="border-radius:8px;overflow:hidden">
+        <iframe width="100%" height="180" src="2.mp4" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="muted" style="margin-top:6px"></div>
+</div>
+
+         <div style="flex:1;min-width:260px">
+    <div style="border-radius:8px;overflow:hidden">
+        <iframe width="100%" height="180" src="3.mp4" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="muted" style="margin-top:6px"></div>
+</div>
+
+          <div style="flex:1;min-width:260px">
+    <div style="border-radius:8px;overflow:hidden">
+        <iframe width="100%" height="180" src="4.mp4" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="muted" style="margin-top:6px"></div>
+</div>
+
+         <div style="flex:1;min-width:260px">
+    <div style="border-radius:8px;overflow:hidden">
+        <iframe width="100%" height="180" src="5.mp4" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="muted" style="margin-top:6px"></div>
+</div>
+      </div>
+    </section>
+
+    <!-- Open Box Surprise -->
+    <section style="margin-top:16px">
+      <div class="card">
+        <h3>Open Box Surprise</h3>
+        <div class="box-wrap">
+          <div class="box" id="giftBox" title="Click to open">
+            <div class="lid"></div>
+            <div class="base"></div>
+            <div class="surprise-content" id="surpriseContent"></div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
+          <button id="revealMsg" style="background:#E2AEB3">Reveal Pop-up Message</button>
+          <button id="revealImage" style="background:#6bbf8f">Reveal Hidden Image</button>
+          <button id="revealVideo" style="background:#5b8bff">Reveal Hidden Video</button>
+        </div>
+
+        <div class="muted" style="text-align:center;margin-top:8px">Tip: click the buttons above.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox / Modal container -->
+  <div class="modal" id="modal">
+    <div class="dialog" role="dialog" aria-modal="true">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong id="modalTitle">Preview</strong>
+        <button id="modalClose" style="background:#eee;color:#333;border-radius:8px;padding:6px 8px">Close</button>
+      </div>
+      <div id="modalBody" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <footer>
+    Made with ❤️ — Ubaid &amp; Sahla · 22 Oct 2025
+  </footer>
+
+  <script>
+    // --- Music controls ---
+    const bgm = document.getElementById('bgm');
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const vol = document.getElementById('vol');
+    bgm.volume = 0.6;
+    playBtn.addEventListener('click', ()=>{bgm.play(); playBtn.style.opacity=1;});
+    pauseBtn.addEventListener('click', ()=>{bgm.pause();});
+    vol.addEventListener('input', ()=>bgm.volume = vol.value);
+
+    // --- Image lightbox ---
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modalBody');
+    const modalClose = document.getElementById('modalClose');
+    const modalTitle = document.getElementById('modalTitle');
+
+    document.querySelectorAll('#imageGallery .thumb').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        modalTitle.textContent = 'Photo Preview';
+        modalBody.innerHTML = `<img src="${img.dataset.full||img.src}" style="width:100%;height:auto;border-radius:8px">`;
+        modal.classList.add('show');
+      })
+    })
+
+    modalClose.addEventListener('click', ()=>{modal.classList.remove('show'); modalBody.innerHTML='';});
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) { modal.classList.remove('show'); modalBody.innerHTML=''; }});
+
+    // --- Open box animations & reveals ---
+    const giftBox = document.getElementById('giftBox');
+    const surpriseContent = document.getElementById('surpriseContent');
+    const revealMsg = document.getElementById('revealMsg');
+    const revealImage = document.getElementById('revealImage');
+    const revealVideo = document.getElementById('revealVideo');
+
+    // Prepare content: edit these strings to personalize
+    const popupMessage = `<div style="padding:18px;text-align:center"><h2 style="color:var(--accent)">Happy 10‑Month Anniversary, my love ❤️</h2><p class="muted">"Muthee... you are my home, my laugh, my everything."<br><strong></strong></p></div>`;
+    const hiddenImageURL = 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1600&q=80&auto=format&fit=crop';
+    const hiddenVideoURL = 'https://www.w3schools.com/html/mov_bbb.mp4'; // sample video
+
+    // helper to open the box (visual only)
+    function openBox(){ giftBox.classList.add('open'); }
+    function closeBox(){ giftBox.classList.remove('open'); }
+
+    // when clicking the box: open and show a small preview inside the box area (not the modal)
+    giftBox.addEventListener('click', ()=>{
+      if(!giftBox.classList.contains('open')){
+        openBox();
+        // show a gentle floating heart then clear
+        surpriseContent.innerHTML = `<div style="text-align:center;animation:float 1.4s ease-out;">🎁</div>`;
+        setTimeout(()=>{ surpriseContent.innerHTML = `<div style="font-size:14px;color:var(--muted);">Click "Reveal" buttons below for full surprise</div>`; },900);
+      } else {
+        closeBox();
+        surpriseContent.innerHTML='';
+      }
+    });
+
+    // Reveal pop-up message (modal)
+    revealMsg.addEventListener('click', ()=>{
+      modalTitle.textContent = 'A Love Note';
+      modalBody.innerHTML = popupMessage;
+      modal.classList.add('show');
+    });
+
+    // Reveal hidden image (modal) and animate box
+    revealImage.addEventListener('click', ()=>{
+      openBox();
+      modalTitle.textContent = 'A Hidden Photo';
+      modalBody.innerHTML = `<img src="surimg.jpg" style="width:100%;height:auto;border-radius:8px">`;
+      modal.classList.add('show');
+    });
+
+    // Reveal hidden video (modal)
+    revealVideo.addEventListener('click', ()=>{
+      openBox();
+      modalTitle.textContent = 'A Hidden Video';
+      modalBody.innerHTML = `<video controls style="width:100%;height:auto;border-radius:8px"><source src="survid.mp4">Your browser cannot play this video.</video>`;
+      modal.classList.add('show');
+    });
+
+    // keyboard: ESC to close modal
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ modal.classList.remove('show'); modalBody.innerHTML=''; } });
+
+    // small keyframes appended programmatically so they don't clutter CSS above
+    const kfs = document.createElement('style');
+    kfs.textContent = `@keyframes float{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-18px);opacity:0}}`;
+    document.head.appendChild(kfs);
+
+    // Accessibility: ensure music doesn't autoplay unexpectedly on page load
+    // Music only plays after user interaction (play button) per most browsers' policies
+  </script>
+</body>
+</html>
